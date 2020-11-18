@@ -1,4 +1,4 @@
-# Readmission to Hospital for Diabetic Patients 
+# Readmission to Hospital Predictor for Diabetic Patients 
 
 
 # License:
