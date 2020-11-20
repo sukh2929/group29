@@ -4,7 +4,7 @@
 Javairia Raza, Rachel Wong, Zhiyong Wang, Sukhdeep Kaur
 
 ## Introduction 
-For this project, we are trying to answer the predictive question: Given a patient’s demographic, medication history and management of diabetes during hospital stay, can we predict if they will be readmitted to the hospital or not?  Analysis with machine learning models will identify features more likely to predict patient readmission. This will be important for hospital management, because it will identify areas where changes can be made to decrease patient readmission and reduce burden on the healthcare system.
+For this project, we are trying to answer the predictive question: Given a patient’s demographic, medication history and management of diabetes during hospital stay, can we predict if they will be readmitted to the hospital or not?  Analysis with machine learning models will identify features more likely to predict patient readmission. This will be important for management of hospital care for diabetic patients, because it will identify areas where changes can be made to decrease patient readmission and reduce burden on the healthcare system.
 
 ## Importance:
 Due to Covid-19, it is critical to reduce the burden on the healthcare system and prevent readmission rates from increasing to make space for Covid cases. Our predictor aims to look at the diabetes management and diagnosis during a patient’s hospital stay to understand how much this affects their readmission. This will allow us to create and improve patient safety protocols to better manage diabetic patients during their hospital stay to provide effective care and prevent readmission during this critical time.  
