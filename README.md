@@ -1,10 +1,8 @@
 # Readmission to Hospital Predictor for Diabetic Patients 
 
-# Introduction 
+## Introduction 
 
 **Question:** Given a patient’s demographic, medication history and management of diabetes during hospital stay, can we predict if they will be readmitted to the hospital or not?
-
-**Type:** Predictive
 
 ## Importance:
 Due to Covid-19, it is critical to reduce the burden on the healthcare system and prevent readmission rates from increasing to make space for Covid cases. Our predictor aims to look at the diabetes management and diagnosis during a patient’s hospital stay to understand how much this affects their readmission. This will allow us to create and improve patient safety protocols to better manage diabetic patients during their hospital stay to provide effective care and prevent readmission during this critical time.  
@@ -26,8 +24,8 @@ This dataset was collected from 1998-2008 among 130 US hospitals and integrated 
 (4) Laboratory tests were performed during the encounter.
 (5) Medications were administered during the encounter.
 
-# Citation  
+## Citation  
 Beata Strack, Jonathan P. DeShazo, Chris Gennings, Juan L. Olmo, Sebastian Ventura, Krzysztof J. Cios, and John N. Clore, “Impact of HbA1c Measurement on Hospital Readmission Rates: Analysis of 70,000 Clinical Database Patient Records,” BioMed Research International, vol. 2014, Article ID 781670, 11 pages, 2014.
 
-# License:
+## License:
 The materials used for this project are under an open access article distributed under the Creative Commons Attribution License, which permits unrestricted use, distribution, and reproduction in any medium, provided the original work is properly cited. If reusing/referencing, please provide a link to this webpage. 
