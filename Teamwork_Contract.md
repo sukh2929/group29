@@ -30,7 +30,7 @@ As well as agreeing to the UBC MDS policies outlined here: https://ubc-mds.githu
 ### Dealing With Conflicts
 * A democracy style conflict management approach will be used during this project, where the majority vote will be chosen. This will ensure that each member has a vote before any major decisions are made. Voting may be done anonymously as well, to eliminate any possible bias.
 * If there is unresolved conflict, the course instructor or teaching assistants will be called upon as mediators to resolve the conflict
-* any conflict between team members outside of the unacceptable behavior mentioned in the Code of Conduct file will first be dealt among the entire group.
+* Any conflict between team members outside of the unacceptable behavior mentioned in the Code of Conduct file will first be dealt among the entire group.
 
 ### Specific Responsibilities
 * Project tasks will be divided up equally among group members.
