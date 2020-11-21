@@ -14,8 +14,7 @@ The data are submitted on behalf of the Center for Clinical and Translational Re
 To replicate this analysis, clone this repository, install the dependencies below, and run the following code in your terminal:
 
 ```python
-python src/download.py
-
+python src/download.py --url https://archive.ics.uci.edu/ml/machine-learning-databases/00480/Measurements_Upload_Smaller.zip --local_path=./
 ```
 
 ## Dependencies 
