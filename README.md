@@ -29,6 +29,7 @@ python src/download.py --url https://archive.ics.uci.edu/ml/machine-learning-dat
  * altair==4.1.0
  * requests==2.24.0
  * zipfile==3.2.0
+ * feather-format==0.4.1
    
 ## Features:
 There are a total of 55 total features describing the diabetic encounters. There is a mix of categorical, numerical, and binary features so we will be doing the appropriate transformations based on feature type. We will also be removing duplicate values and doing imputation to deal with missing values. From our initial EDA, some of the important features are admission type (emergency, urgent, elective, etc.), age, diagnosis 1 (primary diagnosis) and diabetes medications (if there were any diabetic medication prescribed). 
