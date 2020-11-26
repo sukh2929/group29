@@ -17,7 +17,6 @@ from docopt import docopt
 import os
 import pandas as pd
 import numpy as np
-import feather 
 
 
 opt = docopt(__doc__)
