@@ -17,7 +17,7 @@ from docopt import docopt
 import os
 import pandas as pd
 import numpy as np
-import feather
+
 
 
 opt = docopt(__doc__)
@@ -25,10 +25,10 @@ opt = docopt(__doc__)
 
 def main(opt):
     diabetes_csv = pd.read_csv(opt["--input"])
+    
     # Change `readmitted` target column to binary "YES" or "NO" values if admitted or not.
     diabetes_csv["readmitted"] = diabetes_csv["readmitted"].str.replace(r'[<>]30',"YES",regex = True)
-    
-    print(diabetes_csv.shape)
+  
     # Convert any ? to na
     diabetes_nan = diabetes_csv.replace("?", np.NaN)
     
@@ -45,10 +45,7 @@ def main(opt):
     # Drop any rows with nas and duplicates
     diabetes_clean = diabetes_interim2.dropna()
     diabetes_with_race = diabetes_race_interim.dropna()
-    
-    
-    print(diabetes_clean.shape)
-    print(diabetes_with_race.shape)
+
     
     out_path = os.path.join(opt["--output"], "diabetes_clean.csv")
     file = diabetes_clean.to_csv(out_path, index = False)
