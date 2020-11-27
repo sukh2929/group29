@@ -399,6 +399,7 @@ summary {
 <li><a href="#analysis">Analysis</a></li>
 </ul></li>
 <li><a href="#results-and-discussion">Results and Discussion</a></li>
+<li><a href="#future-improvements">Future Improvements</a></li>
 <li><a href="#references">References</a></li>
 </ul>
 </div>
@@ -434,6 +435,7 @@ summary {
 <ul>
 <li>StackOverflow <span class="citation">(Whidden, n.d.)</span></li>
 <li>store_vals_function <span class="citation">(Kolhatkar, n.d.)</span></li>
+<li>plot formatting <span class="citation">(Ostblom, n.d.)</span></li>
 </ul>
 <p>The code used to perform the analysis and create this report can be found here: INSERT_URL</p>
 <div id="data" class="section level2">
@@ -449,8 +451,23 @@ The data are submitted on behalf of the Center for Clinical and Translational Re
 </div>
 <div id="results-and-discussion" class="section level1">
 <h1>Results and Discussion</h1>
-<p>FILL IN WITH ACTUAL FIGURES</p>
-<p>To improve our model in the future to further analyze patient readmission, we can recommend three main suggestions. First, rather than subsetting our data to take a representative and random sample of 1000, we can take a larger subset or even use our entire data set of roughly 70,000 observations. Our reasoning for sub setting the data was to reduce fit and score time of our models. In future models, the use of a larger data set will provide more accurate predictions, reduce bias, and identify outliers that may skew our results. Second, other classifier models such as random forest could be used to test against our logistic regression model to improve predictions. The use of logistic regression assumes there is a linear relationship the independent and dependent variables, which may not be the case in our project. Random forest are non-parametric and will bypass this linearity assumption associated with logistic regression. Third, our model analyzes a binary classification of readmission although the original data set was a multi-classification of readmission (not readmitted, readmitted for less than 30 days, readmitted for more than 30 days). By using a multi-classification model instead, we can generate a more specific prediction and analyze the severity of features related to readmission time, making our conclusions more informative to improving the healthcare system.</p>
+<p>Through exploratory data analysis, we determined that some of the features were not informative to answering our question or contained many missing values. This was confirmed through Pandas Profiling which can be found <a href="INSERT_URL_TO_PANDAS?_OR_SCRIPT_3">here</a> as well as correlation between specific features and potential class imbalance based on the target readmitted column. Correlation between certain numerical values shown in Pandas Profiling was confirmed when we analyzed interactions between the features. [INSERT_NUMERIC_CORRELATION_PLOT].</p>
+<p>Data cleaning was done to address non-informative features, class imbalance, NAN values, and duplicate encounters, and this code can be found <a href="INTERT_URL_TO_SCRIPT_2">here</a>. Particularly, the distribution of race was reviewed to determine that there was no significant difference between different races in patient readmission and therefore the race column was removed from our analysis [INSERT_RACE_FIGURE].</p>
+<p>Several of the numerical features were reviewed by plotting the distribution of the feature for the two different target classes against each other and found the primary diagnosis of the patient, days spent in hospital, number of medications taken and the frequency of lab procedures to be most informative of predicting readmission status. The importance of the primary diagnosis feature is that if the primary diagnosis is diabetes perhaps patients received better care during their first encounter and thus do not get readmitted <span class="citation">(Strack et al. 2014b)</span>. [INSERT_NUMERICAL_FEATURES_AGAINSTEACHOTHER]</p>
+<p>Several of the categorical features were also reviewed in a similar format to the numerical features analysis, and found that metformin, insulin, and Hemoglobin A1C levels were most informative of predicting readmission status. Testing for hemoglobin levels may have resulted in applicable changes to the medications and thus better management of diabetes during their hospital stay, preventing readmission <span class="citation">(Strack et al. 2014b)</span>. [INSERT_CATEGORICAL_FEATURES_AGAINSTEACHOTHER]</p>
+<ul>
+<li>TOOK OUT EFFECTS OF AGE FIGURE *</li>
+</ul>
+<p>After exploratory data analysis and data cleaning, machine learning models were tested with our data set, and logistic regression (balanced) was determined as the best model to move forward with in our analysis based on fit and score time, accuracy, and f1 scores. The code used to perform machine learning can be found <a href="INSERT_URL_TO_SCRIPT_4">here</a>. [INSERT_SCRIPT4_RESULTS_DICT].</p>
+<p>Hyperparameter optimization was performed and identified potential improvements for our model in future use. From the confusion matrix, we can see that there is a high amount of false positives and false negatives. From the ROC curve with AUC, and the red point showing our threshold at 0.5, our model is performing at 0.54 where AUC = 1.0 is a perfect classification. These results suggest that our model could be improved by choosing a different classifier or testing other scoring methods for our optimization besides f1-score. Our model performed average on the test data, and will therefore require improvements before implementation on deployment data for use in clinical studies. Details about these improvements can be found in the future improvements section of this report. [INSERT_CONFUSION_MATRIX] [INSERT_AUC_CURVE]</p>
+<ul>
+<li>TOOK OUT PRECISION RECALL CURVE *</li>
+</ul>
+<p>Completing our analysis using our model on test data, the top features most indicative of patient readmission were found to be INSERT_WHICH_FEATURES with the associated highest coefficients. These results suggest the healthcare system begin implementing changes in these specific features in order to manage diabetic patient readmission more effectively. [INSERT_FEATURES_COEFFICIENTSdf]</p>
+</div>
+<div id="future-improvements" class="section level1">
+<h1>Future Improvements</h1>
+<p>To improve our model in the future to further analyze patient readmission, we can recommend three main suggestions. First, rather than subsetting our data to take a representative and random sample of 1000, we can take a larger subset or even use our entire data set of roughly 70,000 observations. Our reasoning for subsetting the data was to reduce fit and score time of our models. In future models, the use of a larger data set will provide more accurate predictions, reduce bias, and identify outliers that may skew our results. Second, other classifier models such as random forest could be used to test against our logistic regression model to improve predictions. The use of logistic regression assumes there is a linear relationship the independent and dependent variables, which may not be the case in our project. Random forest are non-parametric and will bypass this linearity assumption associated with logistic regression. Third, our model analyzes a binary classification of readmission although the original data set was a multi-classification of readmission (not readmitted, readmitted for less than 30 days, readmitted for more than 30 days). By using a multi-classification model instead, we can generate a more specific prediction and analyze the severity of features related to readmission time, making our conclusions more informative to improving the healthcare system.</p>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1 class="unnumbered">References</h1>
@@ -465,10 +482,13 @@ The data are submitted on behalf of the Center for Clinical and Translational Re
 <p>Hunter, John D. 2007. “Matplotlib: A 2D Graphics Environment.” <em>Computing in Science &amp; Engineering</em> 9 (3): 90–95.</p>
 </div>
 <div id="ref-DSCI571Var">
-<p>Kolhatkar, Varada. n.d. <em>“DSCI: 571 Supervised Learning”</em>. <a href="%22https://github.ubc.ca/MDS-2020-21/DSCI_571_sup-learn-1_students%22">&quot;https://github.ubc.ca/MDS-2020-21/DSCI_571_sup-learn-1_students&quot;</a>.</p>
+<p>Kolhatkar, Varada. n.d. <em>“DSCI: 571 Supervised Learning 1”</em>. <a href="%22https://github.ubc.ca/MDS-2020-21/DSCI_571_sup-learn-1_students%22">&quot;https://github.ubc.ca/MDS-2020-21/DSCI_571_sup-learn-1_students&quot;</a>.</p>
 </div>
 <div id="ref-Pandas">
 <p>McKinney, Wes, and others. 2010. “Data Structures for Statistical Computing in Python.” In <em>Proceedings of the 9th Python in Science Conference</em>, 445:51–56. Austin, TX.</p>
+</div>
+<div id="ref-DSCI531Joel">
+<p>Ostblom, Joel. n.d. <em>“DSCI: 531 Data Visualization 1”</em>. <a href="%22https://github.ubc.ca/MDS-2020-21/DSCI_531_viz-1_students%22">&quot;https://github.ubc.ca/MDS-2020-21/DSCI_531_viz-1_students&quot;</a>.</p>
 </div>
 <div id="ref-Scikit">
 <p>Pedregosa, Fabian, Gaël Varoquaux, Alexandre Gramfort, Vincent Michel, Bertrand Thirion, Olivier Grisel, Mathieu Blondel, et al. 2011. “Scikit-Learn: Machine Learning in Python.” <em>Journal of Machine Learning Research</em> 12 (Oct): 2825–30.</p>
