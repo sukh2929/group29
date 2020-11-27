@@ -57,6 +57,20 @@ This data set was sourced from the UCI Machine Learning Repository [@UCI] and ca
 
 ## Analysis
 
+After data cleaning, machine learning model logistic regression (LR) was tested against RBF SVM and a baseline dummy classifier method. LR was determined as the best model in terms of fit and score time, accuracy, and f1 score. Continuing with LR, hyperparameters were optimized and our model was then used to predict diabetic patient readmission (found in the readmitted target column of the data set). The code used to perform the analysis and create this report can be found [here](INSERT_URL_TO_SCRIPT_4)
+
 # Results and Discussion
 
+
+
+FILL IN WITH ACTUAL FIGURES
+```{r predictor-distributions, echo=FALSE, fig.cap="Figure 1. Comparison of the empirical distributions of training data predictors between benign and malignant tumour masses.", out.width = '100%'}
+knitr::include_graphics("../results/predictor_distributions_across_class.png")
+```
+
+To improve our model in the future to further analyze patient readmission, we can recommend three main suggestions. First, rather than subsetting our data to take a representative and random sample of 1000, we can take a larger subset or even use our entire data set of roughly 70,000 observations. Our reasoning for sub setting the data was to reduce fit and score time of our models. In future models, the use of a larger data set will provide more accurate predictions, reduce bias, and identify outliers that may skew our results. Second, other classifier models such as random forest could be used to test against our logistic regression model to improve predictions. The use of logistic regression assumes there is a linear relationship the independent and dependent variables, which may not be the case in our project. Random forest are non-parametric and will bypass this linearity assumption associated with logistic regression. Third, our model analyzes a binary classification of readmission although the original data set was a multi-classification of readmission (not readmitted, readmitted for less than 30 days, readmitted for more than 30 days). By using a multi-classification model instead, we can generate a more specific prediction and analyze the severity of features related to readmission time, making our conclusions more informative to improving the healthcare system.
+
 # References
+
+
+
