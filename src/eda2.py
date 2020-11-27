@@ -54,7 +54,7 @@ def main(opt):
       color = "count()",
     ).properties(width = 100, height = 300)
 
-    file_path2 = os.path.join(opt["--output"], "figure1_racedist_eda.html")
+    file_path2 = os.path.join(opt["--output"], "figure1_racedist_eda.svg")
     race_plot.save(file_path2)
     
     
@@ -77,7 +77,7 @@ def main(opt):
         ).properties(width = 100, height = 100))
         
     num_hists = alt.hconcat(*chart1)
-    file_path3 = os.path.join(opt["--output"], "figure2_numhisttarget_eda.html")
+    file_path3 = os.path.join(opt["--output"], "figure2_numhisttarget_eda.svg")
     num_hists.save(file_path3)
         
     # Histogram for categorical variables
@@ -95,7 +95,7 @@ def main(opt):
           ).properties(width = 100, height = 120))
           
     cat_hists = alt.hconcat(*chart2)
-    file_path4 = os.path.join(opt["--output"], "figure3_numcattarget_eda.html")
+    file_path4 = os.path.join(opt["--output"], "figure3_numcattarget_eda.svg")
     num_hists.save(file_path4)
     
     # Scatterplot for Numerical Variables
@@ -113,7 +113,7 @@ def main(opt):
                         column = numeric_cols
                         ).configure_axis(labels = False)
                         
-    file_path5 = os.path.join(opt["--output"], "figure4_numscatter_eda.html")
+    file_path5 = os.path.join(opt["--output"], "figure4_numscatter_eda.svg")
     numeric_scatter.save(file_path5)
                         
         
@@ -125,7 +125,7 @@ def main(opt):
         color = "count()",
       ).properties(width = 100, height = 300)
 
-    file_path6 = os.path.join(opt["--output"], "figure5_agedist_eda.html")
+    file_path6 = os.path.join(opt["--output"], "figure5_agedist_eda.svg")
     age_plot.save(file_path6)
     
     return print("Done! Check the folder!")
