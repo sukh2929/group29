@@ -11,7 +11,7 @@ Due to Covid-19, it is critical to reduce the burden on the healthcare system an
 The data are submitted on behalf of the Center for Clinical and Translational Research, Virginia Commonwealth University, a recipient of NIH CTSA grant UL1 TR00058, and a recipient of the CERNER data. This dataset was collected from 1998-2008 among 130 US hospitals and integrated delivery networks. The dataset can be found [here](https://archive.ics.uci.edu/ml/datasets/diabetes+130-us+hospitals+for+years+1999-2008#). Research from this collected data was used to assess diabetic care during hospitalization and determine if patients were likely to be readmitted or not. The paper by Strack et al. (2014) can be found [here](https://www.hindawi.com/journals/bmri/2014/781670/) and the descriptions for the features can be found [here](https://www.hindawi.com/journals/bmri/2014/781670/tab1/). 
 
 ## Report 
-The final report can be found [here](https://github.com/UBC-MDS/group29/blob/main/doc/SCRIPT5.md). 
+The final report can be found [here](https://github.com/UBC-MDS/group29/blob/main/doc/SCRIPT5.Rmd). 
 
 ## Usage
 To replicate this analysis, clone this repository, install the dependencies below, and run the following code in your terminal:
@@ -24,7 +24,7 @@ python src/download_script1.py --local_path=./data/raw --url=https://archive.ics
 python src/processingdata.py --input=data/raw/dataset_diabetes/diabetic_data.csv --output=data/processed
 
 # curate all visualizations 
-python src/eda2.py --input=data/raw/dataset_diabetes/diabetic_data.csv;data/processed/diabetes_with_race.csv --output=reports/figures
+python src/eda2.py --input="data/raw/dataset_diabetes/diabetic_data.csv;data/processed/diabetes_with_race.csv" --output=reports/figures
 
 # tune and test the model
 python src/explore_script4.py --input=data/processed/diabetes_clean.csv --output=reports/figures
