@@ -14,10 +14,13 @@ The data are submitted on behalf of the Center for Clinical and Translational Re
 To replicate this analysis, clone this repository, install the dependencies below, and run the following code in your terminal:
 
 ```python
+# download the dataset from the website
 python src/download.py --url https://archive.ics.uci.edu/ml/machine-learning-databases/00480/Measurements_Upload_Smaller.zip --local_path=./
 
+# clean the data to prepare for analysis 
 python src/processingdata.py --input="data/raw/dataset_diabetes/diabetic_data.csv" --output="data/processed"
 
+# curate all visualizations 
 python src/eda2.py --input="data/raw/dataset_diabetes/diabetic_data.csv;data/processed/diabetes_with_race.csv" --output="reports/figures"
 ```
 
@@ -47,6 +50,9 @@ There is a mix of categorical, numerical, and binary features for which we will 
 |             35545             |              54864             |      54864      |
 
 We decided to combine the readmission status before and after 30 days into binary "YES" or "NO" values if the patient was readmitted or not to reduce complexity and adress class imbalance. This will also allow us to perform binary-classification rather than multi-classification. We will test support vector machine classifier with a radial basis function kernel (RBF SVM) and logistic regression classifier models and pick based on best scores which model to proceed with. RBF SVM would be interesting to test since we can change the support vectors with expert knowledge. Insight from the paper suggests a logistic regression model may be most useful for our question, especially with information about feature correlation (weights will be assigned proportionally) and easier to determine informative features. After selecting our final model, we will split the data into 80% training and 20% testing and re-fit the best model on the entire training data set. Next, we will evaluate its performance on the test data set. At this point, we will look at overall accuracy as well as misclassification errors (from the confusion matrix) to assess prediction performance. We will report these values as a table in the final report.
+
+## Report 
+The final report can be found here. 
 
 ## Exploratory Data Analysis
 Before building our model, we have done the exploratory data analysis where we have identified the independence of data, rows having NAs or missing values, drop columns which are irrelevant for prediction, the columns correlation, etc. Additionally, Pandas Profiling was used to generate feature analysis, and any interactions and correlation between the features to assist in data wrangling. EDA analysis will provide us with a table after data wrangling to show dropped features that are not informative to answering our question. A repeated histogram will be generated to compare numerical features compared against each other, highlighting correlation and potential relationships amongst features and the target. Through the EDA, we have determined that there are certain features that should be dropped including encounter_id, patient number due to all unique values and missing values in majority of the rows for features like payer code, medical speciality, examide, citogliton. We have also discovered that race is not a informative feature because although diabetes affects certain races disproportionately (include citation), the distribution amongst the target is very similar in our dataset. 
