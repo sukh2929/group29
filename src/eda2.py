@@ -1,17 +1,17 @@
 # authors: Javairia Raza 
 # date: 2020-11-27
 
-"""
+"""Creates a Pandas Profiling report and visuals for exploratory data anaylsis using two datasets
 Usage:
-  eda2.py --input=<raw_path> --output=<process_path>
+  eda2.py --input=<local_path> --output=<figures_path>
   eda2.py (-h | --help)
   
 Options:
   -h --help     Shows the arguments needed to run script.
-  --input=<local_path>   All the paths for two different datasets needed in order of raw data,
-                         processed with race column 
-                         example: "data/raw/dataset_diabetes/diabetic_data.csv;data/processed/diabetes_with_race.csv"
-  --output=<figures_path>      Path of where to save the figures from EDA.
+  --input=<local_path>   All the paths needed for EDA including file name. EDA needed two different datasets needed in order of raw data 
+                         followed by processed data separated by a semicolon ;.
+                         example: "data/raw/dataset_diabetes/diabetic_data.csv;data/processed/diabetes_with_race.csv".
+  --output=<figures_path>      Local path to where to save the figures into.
 """
 
 from docopt import docopt
