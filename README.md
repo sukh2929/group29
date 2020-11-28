@@ -21,13 +21,13 @@ To replicate this analysis, clone this repository, install the dependencies belo
 python src/download_script1.py --local_path=./data/raw --url=https://archive.ics.uci.edu/ml/machine-learning-databases/00296/dataset_diabetes.zip
 
 # clean the data to prepare for analysis 
-python src/processingdata.py --input="data/raw/dataset_diabetes/diabetic_data.csv" --output="data/processed"
+python src/processingdata.py --input=data/raw/dataset_diabetes/diabetic_data.csv --output=data/processed
 
 # curate all visualizations 
-python src/eda2.py --input="data/raw/dataset_diabetes/diabetic_data.csv;data/processed/diabetes_with_race.csv" --output="reports/figures"
+python src/eda2.py --input=data/raw/dataset_diabetes/diabetic_data.csv;data/processed/diabetes_with_race.csv --output=reports/figures
 
 # tune and test the model
-python src/explore_script4.py --input=“data/processed/diabetes_clean.csv” --output=“reports/figures”
+python src/explore_script4.py --input=data/processed/diabetes_clean.csv --output=reports/figures
 
 # render the report
 Rscript -e "rmarkdown::render('doc/SCRIPT5.Rmd', output_format = 'html_document')"
