@@ -15,6 +15,10 @@ To replicate this analysis, clone this repository, install the dependencies belo
 
 ```python
 python src/download.py --url https://archive.ics.uci.edu/ml/machine-learning-databases/00480/Measurements_Upload_Smaller.zip --local_path=./
+
+python src/processingdata.py --input="data/raw/dataset_diabetes/diabetic_data.csv" --output="data/processed"
+
+python src/eda2.py --input="data/raw/dataset_diabetes/diabetic_data.csv;data/processed/diabetes_with_race.csv" --output="reports/figures"
 ```
 
 ## Dependencies 
@@ -29,6 +33,8 @@ python src/download.py --url https://archive.ics.uci.edu/ml/machine-learning-dat
  * altair==4.1.0
  * requests==2.24.0
  * zipfile==3.2.0
+ * pandas_profiling==2.9.0
+ * altair-saver==0.5.0
 
    
 ## Features:
