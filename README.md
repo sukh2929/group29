@@ -10,20 +10,29 @@ For this project, we are trying to answer the predictive question: Given a patie
 Due to Covid-19, it is critical to reduce the burden on the healthcare system and prevent readmission rates from increasing to make space for Covid cases. Our predictor aims to look at the diabetes management and diagnosis during a patient’s hospital stay to understand how much this affects their readmission. This will allow us to create and improve patient safety protocols to better manage diabetic patients during their hospital stay to provide effective care and prevent readmission during this critical time.  
 The data are submitted on behalf of the Center for Clinical and Translational Research, Virginia Commonwealth University, a recipient of NIH CTSA grant UL1 TR00058, and a recipient of the CERNER data. This dataset was collected from 1998-2008 among 130 US hospitals and integrated delivery networks. The dataset can be found [here](https://archive.ics.uci.edu/ml/datasets/diabetes+130-us+hospitals+for+years+1999-2008#). Research from this collected data was used to assess diabetic care during hospitalization and determine if patients were likely to be readmitted or not. The paper by Strack et al. (2014) can be found [here](https://www.hindawi.com/journals/bmri/2014/781670/) and the descriptions for the features can be found [here](https://www.hindawi.com/journals/bmri/2014/781670/tab1/). 
 
+## Report 
+The final report can be found [here](https://github.com/UBC-MDS/group29/blob/main/doc/SCRIPT5.Rmd). 
+
 ## Usage
 To replicate this analysis, clone this repository, install the dependencies below, and run the following code in your terminal:
 
 ```python
 # download the dataset from the website
-python src/download.py --url https://archive.ics.uci.edu/ml/machine-learning-databases/00480/Measurements_Upload_Smaller.zip --local_path=./
+python src/download_script1.py --local_path=./data/raw --url=https://archive.ics.uci.edu/ml/machine-learning-databases/00296/dataset_diabetes.zip
 
 # clean the data to prepare for analysis 
-python src/processingdata.py --input="data/raw/dataset_diabetes/diabetic_data.csv" --output="data/processed"
+python src/processingdata.py --input=data/raw/dataset_diabetes/diabetic_data.csv --output=data/processed
 
 # curate all visualizations 
-python src/eda2.py --input="data/raw/dataset_diabetes/diabetic_data.csv;data/processed/diabetes_with_race.csv" --output="reports/figures"
-```
+python src/eda2.py --input=data/raw/dataset_diabetes/diabetic_data.csv;data/processed/diabetes_with_race.csv --output=reports/figures
 
+# tune and test the model
+python src/explore_script4.py --input=data/processed/diabetes_clean.csv --output=reports/figures
+
+# render the report
+Rscript -e "rmarkdown::render('doc/SCRIPT5.Rmd', output_format = 'html_document')"
+
+```
 ## Dependencies 
 * Python 4.8.3 and Python packages:
  * docopt==0.6.2
@@ -39,32 +48,10 @@ python src/eda2.py --input="data/raw/dataset_diabetes/diabetic_data.csv;data/pro
  * pandas_profiling==2.9.0
  * altair-saver==0.5.0
 
-   
-## Features:
-There are a total of 55 total features describing the diabetic encounters. There is a mix of categorical, numerical, and binary features so we will be doing the appropriate transformations based on feature type. We will also be removing duplicate values and doing imputation to deal with missing values. From our initial EDA, some of the important features are admission type (emergency, urgent, elective, etc.), age, diagnosis 1 (primary diagnosis) and diabetes medications (if there were any diabetic medication prescribed). 
-
-## Selecting the Best Model
-There is a mix of categorical, numerical, and binary features for which we will apply proper transformations for use in analysis. There is potential class imbalance based on the target column having 54864 values of no readmission, 35545 values of readmission after than 30 days, and 11357 values of readmission in less than 30 days. 
-| Readmission after<br>30 days  |  Readmission before<br>30 days  | No readmission |
-|:-----------------------------:|:------------------------------:|:---------------:|
-|             35545             |              54864             |      54864      |
-
-We decided to combine the readmission status before and after 30 days into binary "YES" or "NO" values if the patient was readmitted or not to reduce complexity and adress class imbalance. This will also allow us to perform binary-classification rather than multi-classification. We will test support vector machine classifier with a radial basis function kernel (RBF SVM) and logistic regression classifier models and pick based on best scores which model to proceed with. RBF SVM would be interesting to test since we can change the support vectors with expert knowledge. Insight from the paper suggests a logistic regression model may be most useful for our question, especially with information about feature correlation (weights will be assigned proportionally) and easier to determine informative features. After selecting our final model, we will split the data into 80% training and 20% testing and re-fit the best model on the entire training data set. Next, we will evaluate its performance on the test data set. At this point, we will look at overall accuracy as well as misclassification errors (from the confusion matrix) to assess prediction performance. We will report these values as a table in the final report.
-
-## Report 
-The final report can be found here. 
-
-## Exploratory Data Analysis
-Before building our model, we have done the exploratory data analysis where we have identified the independence of data, rows having NAs or missing values, drop columns which are irrelevant for prediction, the columns correlation, etc. Additionally, Pandas Profiling was used to generate feature analysis, and any interactions and correlation between the features to assist in data wrangling. EDA analysis will provide us with a table after data wrangling to show dropped features that are not informative to answering our question. A repeated histogram will be generated to compare numerical features compared against each other, highlighting correlation and potential relationships amongst features and the target. Through the EDA, we have determined that there are certain features that should be dropped including encounter_id, patient number due to all unique values and missing values in majority of the rows for features like payer code, medical speciality, examide, citogliton. We have also discovered that race is not a informative feature because although diabetes affects certain races disproportionately (include citation), the distribution amongst the target is very similar in our dataset. 
-
-Please find our EDA [here](https://github.com/UBC-MDS/group29/blob/main/reports/EDA/EDA_initial.ipynb).
-
-## Sharing Our Results 
-To share the results of our analysis, we plan to generate figures summarizing our results of model performance (tested against a baseline classifier), and evaluation of features most indicative of patient readmission and features most indicative of no patient readmission. Model performance figures will also show hyperparameter optimization, tested against default hyperparameters. With our analysis and results, we hope that our model will be able to predict patient readmission using deployment data in future analysis, and identify areas for change in hospitalization management.
-
-## Citation  
-Beata Strack, Jonathan P. DeShazo, Chris Gennings, Juan L. Olmo, Sebastian Ventura, Krzysztof J. Cios, and John N. Clore, “Impact of HbA1c Measurement on Hospital Readmission Rates: Analysis of 70,000 Clinical Database Patient Records,” BioMed Research International, vol. 2014, Article ID 781670, 11 pages, 2014.
-
-
 ## License:
 The materials used for this project are under an open access article distributed under the Creative Commons Attribution License, which permits unrestricted use, distribution, and reproduction in any medium, provided the original work is properly cited. If reusing/referencing, please provide a link to this webpage. 
+
+## References:
+Beata Strack, Jonathan P. DeShazo, Chris Gennings, Juan L. Olmo, Sebastian Ventura, Krzysztof J. Cios, and John N. Clore, “Impact of HbA1c Measurement on Hospital Readmission Rates: Analysis of 70,000 Clinical Database Patient Records,” BioMed Research International, vol. 2014, Article ID 781670, 11 pages, 2014.
+
+Dua, Dheeru, and Casey Graff. 2017. “UCI Machine Learning Repository.” University of California, Irvine, School of Information; Computer Sciences. http://archive.ics.uci.edu/ml.

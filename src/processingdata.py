@@ -1,16 +1,16 @@
 # author : Javairia Raza 
 # date : 2020-11-26
 
-"""
+"""Cleans the raw data to prepare it for analysis
 Usage:
-  process.py --input=<raw_path> --output=<process_path>
-  process.py (-h | --help)
-  process.py
+  processingdata.py --input=<raw_path> --output=<process_path>
+  processingdata.py (-h | --help)
+  
   
 Options:
   -h --help     Shows the arguments needed to run script.
   --input=<raw_path>   Path of the raw data including file name.
-  --output=<process_path>      local path to save the process data.
+  --output=<process_path>      Local path to save the processed data to.
 """
 
 from docopt import docopt
