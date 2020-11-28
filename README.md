@@ -24,7 +24,7 @@ python src/download_script1.py --local_path=./data/raw --url=https://archive.ics
 python src/processingdata.py --input=data/raw/dataset_diabetes/diabetic_data.csv --output=data/processed
 
 # curate all visualizations 
-python src/eda2.py --input=data/raw/dataset_diabetes/diabetic_data.csv;data/processed/diabetes_with_race.csv --output=reports/figures
+python src/eda2.py --input="data/raw/dataset_diabetes/diabetic_data.csv;data/processed/diabetes_with_race.csv" --output=reports/figures
 
 # tune and test the model
 python src/explore_script4.py --input=data/processed/diabetes_clean.csv --output=reports/figures

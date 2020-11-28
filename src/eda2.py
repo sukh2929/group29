@@ -32,7 +32,6 @@ datafile = string.split(";")
 
 
 def main(opt):
-  
     # Pandas Profiling 
     # 
     diabetes_csv = pd.read_csv(datafile[0])
@@ -42,9 +41,8 @@ def main(opt):
     
     #Subset the data for visualization optimization
 
-    diabetes_with_race = pd.read_csv(datafile[1]) #change this file path
+    diabetes_with_race = pd.read_csv(datafile[1]) 
     diabetes_subset = diabetes_with_race.sample(n = 1000)
-    print(diabetes_subset.shape)
 
     # Heatmap for Race
     
