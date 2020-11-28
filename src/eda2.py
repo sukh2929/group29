@@ -78,7 +78,7 @@ def main(opt):
         ).properties(width = 100, height = 100))
 
     num_hists = alt.hconcat(*chart1)
-    file_path3 = os.path.join(opt["--output"], "figure2_numhisttarget_eda.png")
+    file_path3 = os.path.join(opt["--output"], "figure2_numhisttarget_eda.svg")
     num_hists.save(file_path3)
         
     # Histogram for categorical variables
@@ -96,7 +96,7 @@ def main(opt):
           ).properties(width = 100, height = 120))
 
     cat_hists = alt.hconcat(*chart2)
-    file_path4 = os.path.join(opt["--output"], "figure3_numcattarget_eda.png")
+    file_path4 = os.path.join(opt["--output"], "figure3_numcattarget_eda.svg")
     cat_hists.save(file_path4)
 
     # Scatterplot for Numerical Variables
@@ -114,7 +114,7 @@ def main(opt):
                         column = numeric_cols
                         ).configure_axis(labels = False)
 
-    file_path5 = os.path.join(opt["--output"], "figure4_numscatter_eda.png")
+    file_path5 = os.path.join(opt["--output"], "figure4_numscatter_eda.svg")
     numeric_scatter.save(file_path5)
 
     return print("Done! Check the folder!")
