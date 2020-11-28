@@ -32,7 +32,7 @@ The R programming language [@R] and Python programming language [@Python] were u
 * tidyverse [@tidyverse]
 * numpy [@Numpy]
 * pandas [@Pandas]
-* altair [@Altair]
+* altair and altair_saver [@Altair]
 * hashlib [@Hashlib]
 * matplotlib [@Matplotlib]
 * iPython [@iPython]
@@ -41,6 +41,7 @@ The R programming language [@R] and Python programming language [@Python] were u
 * zipfile [@Zipfile]
 * urllib [@Urllib]
 * io [@io]
+* pandas profiling [@pp]
 * warnings [@Warnings]
 
 For statistical analysis (SCRIPT4) specifically:
@@ -49,7 +50,10 @@ For statistical analysis (SCRIPT4) specifically:
 * store_vals_function [@DSCI571Var]
 * plot formatting [@DSCI531Joel]
 
-The code used to perform the analysis and create this report can be found here: INSERT_URL
+The code used to perform the analysis and create this report can be found [here](https://github.com/UBC-MDS/group29).
+
+[@NI]
+[@jake]
 
 ## Data
 
@@ -63,35 +67,33 @@ After data cleaning, machine learning model logistic regression was tested again
 
 # Results and Discussion
 
-Through exploratory data analysis, we determined that some of the features were not informative to answering our question or contained many missing values. This was confirmed through Pandas Profiling which can be found [here](INSERT_LINK_TO_PANDAS) as well as correlation between specific features and potential class imbalance based on the target readmitted column. Correlation between certain numerical values shown in Pandas Profiling was confirmed when we analyzed interactions between the features. [INSERT_NUMERIC_CORRELATION_PLOT]. 
+Through exploratory data analysis, we determined that some of the features were not informative to answering our question or contained many missing values. This was confirmed through Pandas Profiling which can be found [here](https://github.com/UBC-MDS/group29/blob/main/reports/figures/pandas_profiling.html) as well as correlation between specific features and potential class imbalance based on the target readmitted column. Correlation between certain numerical values shown in Pandas Profiling was confirmed when we analyzed interactions between the features.
 
-```{r correlation_plot, echo=FALSE, fig.cap="Figure 1. Interactions and Correlation of Numeric Features", fig.align='center', out.width = '50%'}
-#knitr::include_graphics("../reports/figures/")
+```{r correlation_plot, echo=FALSE, fig.cap="Figure 1. Interactions and Correlation of Numeric Features", fig.align='center', out.width = '100%'}
+knitr::include_graphics("../reports/figures/figure4_numscatter_eda.svg")
 ```
 
-Data cleaning was done to address non-informative features, class imbalance, NAN values, and duplicate encounters, and this code can be found [here](INTERT_URL_TO_SCRIPT_2). Particularly, the distribution of race was reviewed to determine that there was no significant difference between different races in patient readmission and therefore the race column was removed from our analysis.
+Data cleaning was done to address non-informative features, class imbalance, NAN values, and duplicate encounters, and this code can be found [here](https://github.com/UBC-MDS/group29/blob/main/src/processingdata.py). Particularly, the distribution of race was reviewed to determine that there was no significant difference between different races in patient readmission and therefore the race column was removed from our analysis.
 
-
-```{r race_figure, echo=FALSE, fig.cap="Figure 2. Distribution of Race and Readmission Status", out.width = '50%', fig.align = 'center'}
+```{r race_figure, echo=FALSE, fig.cap="Figure 2. Distribution of Race and Readmission Status", out.width = '40%', fig.align = 'center'}
 knitr::include_graphics("../reports/figures/figure1_racedist_eda.svg")
 ```
 
+Several of the numerical features were reviewed by plotting the distribution of the feature for the two different target classes against each other and found the primary diagnosis of the patient, days spent in hospital, number of medications taken and the frequency of lab procedures to be most informative of predicting readmission status. The importance of the primary diagnosis feature is that if the primary diagnosis is diabetes perhaps patients received better care during their first encounter and thus do not get readmitted [@paper].
 
-Several of the numerical features were reviewed by plotting the distribution of the feature for the two different target classes against each other and found the primary diagnosis of the patient, days spent in hospital, number of medications taken and the frequency of lab procedures to be most informative of predicting readmission status. The importance of the primary diagnosis feature is that if the primary diagnosis is diabetes perhaps patients received better care during their first encounter and thus do not get readmitted [@paper]. [INSERT_NUMERICAL_FEATURES_AGAINSTEACHOTHER]
-
-```{r numeric_features, echo=FALSE, fig.cap="Figure 3. Distribution of Numeric Features and Readmission Status", fig.align='center', out.width = '50%'}
-#knitr::include_graphics("../reports/figures/")
+```{r numeric_features, echo=FALSE, fig.cap="Figure 3. Distribution of Numeric Features and Readmission Status", fig.align='center', out.width = '100%'}
+knitr::include_graphics("../reports/figures/figure2_numhisttarget_eda.svg")
 ```
 
-Several of the categorical features were also reviewed in a similar format to the numerical features analysis, and found that metformin, insulin, and Hemoglobin A1C levels were most informative of predicting readmission status. Testing for hemoglobin levels may have resulted in applicable changes to the medications and thus better management of diabetes during their hospital stay, preventing readmission [@paper]. [INSERT_CATEGORICAL_FEATURES_AGAINSTEACHOTHER]
+Several of the categorical features were also reviewed in a similar format to the numerical features analysis, and found that metformin, insulin, and Hemoglobin A1C levels were most informative of predicting readmission status. Testing for hemoglobin levels may have resulted in applicable changes to the medications and thus better management of diabetes during their hospital stay, preventing readmission [@paper]. 
 
-```{r categorical_features, echo=FALSE, fig.cap="Figure 4. Distribution of Categorical Features and Readmission Status", fig.align='center', out.width = '50%'}
-#knitr::include_graphics("../reports/figures/")
+```{r categorical_features, echo=FALSE, fig.cap="Figure 4. Distribution of Categorical Features and Readmission Status", fig.align='center', out.width = '100%'}
+knitr::include_graphics("../reports/figures/figure3_numcattarget_eda.svg")
 ```
 
 After exploratory data analysis and data cleaning, machine learning models were tested with our data set, and logistic regression (balanced) was determined as the best model to move forward with in our analysis based on fit and score time, accuracy, and f1 scores as shown in Table 1. The code used to perform machine learning can be found [here].(INSERT_URL_TO_SCRIPT_4). 
 
-```{r classifier_scores, warning = FALSE, message = FALSE, echo=FALSE, out.width = '50%', results = 'asis', fig.width=5}
+```{r classifier_scores, warning = FALSE, message = FALSE, echo=FALSE, out.width = '100%', results = 'asis', fig.width=5}
 classifier_scores <- read_csv("../reports/figures/script4_classifier_scores.csv") 
 classifier_scores_tidy <- as.data.frame(classifier_scores) %>%
   rename(Classifiers = X1) %>%
