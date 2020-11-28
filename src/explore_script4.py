@@ -1,4 +1,8 @@
-"""
+# author: Rachel Wong, Sukhdeep Kaur, Zhiyong Wang
+# date: 2020-11-28
+
+
+"""performs some statistical or machine learning analysis and summarizes the results as a figure(s) and a table(s)
 Usage:
   explore_script4.py --input=<raw_path> --output=<process_path>
   explore_script4.py (-h | --help)
@@ -58,8 +62,18 @@ from urllib.request import urlopen
 from io import BytesIO
 
 opt = docopt(__doc__)
+print(opt)
 
-diabetes_clean = pd.read_csv("data/processed/diabetes_clean.csv")
+read_path = "data/processed/diabetes_clean.csv"
+if len(opt['--input']) > 0:
+    read_path = opt['--input']
+
+output_path = opt['--output']
+
+print(read_path)
+print(output_path)
+
+diabetes_clean = pd.read_csv(read_path)
 
 
 # Take a random and representative sample of our diabetes dataset to apply data analysis to
