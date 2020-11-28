@@ -48,7 +48,7 @@ For statistical analysis specifically:
 
 * StackOverflow [@DSCI571Stack]
 * store_vals_function [@DSCI571Var]
-* plot formatting [@DSCI531Joel]
+* plot formatting [@DSCI531Joel] 
 
 The code used to perform the project and create this report can be found [here](https://github.com/UBC-MDS/group29).
 
