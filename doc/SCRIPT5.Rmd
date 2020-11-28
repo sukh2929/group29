@@ -59,14 +59,14 @@ This data set was sourced from the UCI Machine Learning Repository [@UCI] and ca
 
 ## Analysis
 
-After data cleaning, machine learning model logistic regression was tested against RBF SVM and a baseline dummy classifier method. Logistic regression was determined as the best model in terms of fit and score time, accuracy, and f1 score. Continuing with logistic regression, hyperparameters were optimized and our model was then used to predict diabetic patient readmission (found in the readmitted target column of the data set). The code used to perform the analysis and create this report can be found [here](INSERT_URL_TO_SCRIPT_4)
+After data cleaning, machine learning model logistic regression was tested against RBF SVM and a baseline dummy classifier method. Logistic regression was determined as the best model in terms of fit and score time, accuracy, and f1 score. Continuing with logistic regression, hyperparameters were optimized and our model was then used to predict diabetic patient readmission (found in the readmitted target column of the data set). The code used to perform the analysis and create this report can be found [here].(INSERT_URL_TO_SCRIPT_4)
 
 # Results and Discussion
 
-Through exploratory data analysis, we determined that some of the features were not informative to answering our question or contained many missing values. This was confirmed through Pandas Profiling which can be found [here](INSERT_URL_TO_PANDAS?_OR_SCRIPT_3) as well as correlation between specific features and potential class imbalance based on the target readmitted column. Correlation between certain numerical values shown in Pandas Profiling was confirmed when we analyzed interactions between the features. [INSERT_NUMERIC_CORRELATION_PLOT]. 
+Through exploratory data analysis, we determined that some of the features were not informative to answering our question or contained many missing values. This was confirmed through Pandas Profiling which can be found [here](INSERT_LINK_TO_PANDAS) as well as correlation between specific features and potential class imbalance based on the target readmitted column. Correlation between certain numerical values shown in Pandas Profiling was confirmed when we analyzed interactions between the features. [INSERT_NUMERIC_CORRELATION_PLOT]. 
 
-```{r FILL, echo=FALSE, fig.cap="Figure 1. Comparison of the empirical distributions of training data predictors between benign and malignant tumour masses.", out.width = '100%'}
-#knitr::include_graphics("../results/predictor_distributions_across_class.png")
+```{r correlation_plot, echo=FALSE, fig.cap="Figure 1. Interactions and Correlation of Numeric Features", fig.align='center', out.width = '50%'}
+#knitr::include_graphics("../reports/figures/")
 ```
 
 Data cleaning was done to address non-informative features, class imbalance, NAN values, and duplicate encounters, and this code can be found [here](INTERT_URL_TO_SCRIPT_2). Particularly, the distribution of race was reviewed to determine that there was no significant difference between different races in patient readmission and therefore the race column was removed from our analysis.
@@ -79,11 +79,17 @@ knitr::include_graphics("../reports/figures/figure1_racedist_eda.svg")
 
 Several of the numerical features were reviewed by plotting the distribution of the feature for the two different target classes against each other and found the primary diagnosis of the patient, days spent in hospital, number of medications taken and the frequency of lab procedures to be most informative of predicting readmission status. The importance of the primary diagnosis feature is that if the primary diagnosis is diabetes perhaps patients received better care during their first encounter and thus do not get readmitted [@paper]. [INSERT_NUMERICAL_FEATURES_AGAINSTEACHOTHER]
 
+```{r numeric_features, echo=FALSE, fig.cap="Figure 3. Distribution of Numeric Features and Readmission Status", fig.align='center', out.width = '50%'}
+#knitr::include_graphics("../reports/figures/")
+```
+
 Several of the categorical features were also reviewed in a similar format to the numerical features analysis, and found that metformin, insulin, and Hemoglobin A1C levels were most informative of predicting readmission status. Testing for hemoglobin levels may have resulted in applicable changes to the medications and thus better management of diabetes during their hospital stay, preventing readmission [@paper]. [INSERT_CATEGORICAL_FEATURES_AGAINSTEACHOTHER]
 
-* TOOK OUT EFFECTS OF AGE FIGURE *
+```{r categorical_features, echo=FALSE, fig.cap="Figure 4. Distribution of Categorical Features and Readmission Status", fig.align='center', out.width = '50%'}
+#knitr::include_graphics("../reports/figures/")
+```
 
-After exploratory data analysis and data cleaning, machine learning models were tested with our data set, and logistic regression (balanced) was determined as the best model to move forward with in our analysis based on fit and score time, accuracy, and f1 scores as shown in Table 1. The code used to perform machine learning can be found [here](INSERT_URL_TO_SCRIPT_4). [INSERT_SCRIPT4_RESULTS_DICT]. 
+After exploratory data analysis and data cleaning, machine learning models were tested with our data set, and logistic regression (balanced) was determined as the best model to move forward with in our analysis based on fit and score time, accuracy, and f1 scores as shown in Table 1. The code used to perform machine learning can be found [here].(INSERT_URL_TO_SCRIPT_4). 
 
 ```{r classifier_scores, warning = FALSE, message = FALSE, echo=FALSE, out.width = '50%', results = 'asis', fig.width=5}
 classifier_scores <- read_csv("../reports/figures/script4_classifier_scores.csv") 
