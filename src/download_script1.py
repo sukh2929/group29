@@ -4,9 +4,9 @@
 """Download data from URL address to local path.
 
 Usage:
-  download.py --local_path=<local_path> --url=<url>
-  download.py (-h | --help)
-  download.py
+  download_script1.py --local_path=<local_path> --url=<url>
+  download_script1.py (-h | --help)
+  download_script1.py
 
 Options:
   -h --help     Show this screen.
