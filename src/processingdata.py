@@ -39,12 +39,12 @@ def main(opt):
     diabetes_interim2 = diabetes_interim.drop(columns = ["encounter_id", "patient_nbr", "race", "weight", 
                                               "payer_code", "medical_specialty", "examide", "citoglipton"])
     # Drop unnecessary columns except race
-    diabetes_race_interim = diabetes_interim.drop(columns = ["encounter_id", "patient_nbr","weight", 
+    diabetes_race_interim2 = diabetes_interim.drop(columns = ["encounter_id", "patient_nbr","weight", 
                                              "payer_code", "medical_specialty", "examide", "citoglipton"])
     
     # Drop any rows with nas and duplicates
     diabetes_clean = diabetes_interim2.dropna()
-    diabetes_with_race = diabetes_race_interim.dropna()
+    diabetes_with_race = diabetes_race_interim2.dropna()
 
     
     out_path = os.path.join(opt["--output"], "diabetes_clean.csv")
