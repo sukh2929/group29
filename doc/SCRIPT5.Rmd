@@ -43,7 +43,6 @@ The R programming language [@R] and Python programming language [@Python] were u
 * urllib [@Urllib]
 * io [@io]
 * pandas profiling [@pp]
-* warnings [@Warnings]
 
 For statistical analysis specifically:
 
