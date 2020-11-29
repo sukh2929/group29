@@ -48,6 +48,11 @@ Rscript -e "rmarkdown::render('doc/SCRIPT5.Rmd', output_format = 'html_document'
  * pandas_profiling==2.9.0
  * altair-saver==0.5.0
  * scikit-learn==0.23.2
+ * matplotlib==3.3.2
+
+* R version 4.89 and R packages:
+ * knitr==1.29
+ * tidyverse==1.2.3
 
 ## License:
 The materials used for this project are under an open access article distributed under the Creative Commons Attribution License, which permits unrestricted use, distribution, and reproduction in any medium, provided the original work is properly cited. If reusing/referencing, please provide a link to this webpage. 
