@@ -24,7 +24,7 @@ python src/download_script1.py --local_path=./data/raw --url=https://archive.ics
 python src/processingdata.py --input=data/raw/dataset_diabetes/diabetic_data.csv --output=data/processed
 
 # curate all visualizations 
-python src/eda2.py --input=data/raw/dataset_diabetes/diabetic_data.csv;data/processed/diabetes_with_race.csv --output=reports/figures
+python src/eda2.py --input="data/raw/dataset_diabetes/diabetic_data.csv;data/processed/diabetes_with_race.csv" --output=reports/figures
 
 # tune and test the model
 python src/explore_script4.py --input=data/processed/diabetes_clean.csv --output=reports/figures
@@ -47,6 +47,7 @@ Rscript -e "rmarkdown::render('doc/SCRIPT5.Rmd', output_format = 'html_document'
  * zipfile==3.2.0
  * pandas_profiling==2.9.0
  * altair-saver==0.5.0
+ * scikit-learn==0.23.2
 
 ## License:
 The materials used for this project are under an open access article distributed under the Creative Commons Attribution License, which permits unrestricted use, distribution, and reproduction in any medium, provided the original work is properly cited. If reusing/referencing, please provide a link to this webpage. 
