@@ -53,6 +53,7 @@ Rscript -e "rmarkdown::render('doc/SCRIPT5.Rmd', output_format = 'html_document'
 * R version 4.89 and R packages:
   * knitr==1.29
   * tidyverse==1.2.3
+  * kableExtra==1.3.1
 
 ## License:
 The materials used for this project are under an open access article distributed under the Creative Commons Attribution License, which permits unrestricted use, distribution, and reproduction in any medium, provided the original work is properly cited. If reusing/referencing, please provide a link to this webpage. 
