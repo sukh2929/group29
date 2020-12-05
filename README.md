@@ -41,6 +41,7 @@ make clean
   * altair-saver==0.5.0
   * scikit-learn==0.23.2
   * matplotlib==3.3.2
+  
   Additional dependency for Windows users:
   * npm install -g vega-lite vega-cli canvas
  
