@@ -14,25 +14,17 @@ The data are submitted on behalf of the Center for Clinical and Translational Re
 The final report can be found [here](https://github.com/UBC-MDS/group29/blob/main/doc/SCRIPT5.Rmd). 
 
 ## Usage
-To replicate this analysis, clone this repository, install the dependencies below, and run the following code in your terminal:
+To replicate this analysis, clone this repository, install the dependencies below, and run the following code in your terminal from the root directory of this project:
 
 ```python
-# download the dataset from the website
-python src/download_script1.py --local_path=./data/raw --url=https://archive.ics.uci.edu/ml/machine-learning-databases/00296/dataset_diabetes.zip
-
-# clean the data to prepare for analysis 
-python src/processingdata.py --input=data/raw/dataset_diabetes/diabetic_data.csv --output=data/processed
-
-# curate all visualizations 
-python src/eda2.py --input="data/raw/dataset_diabetes/diabetic_data.csv;data/processed/diabetes_with_race.csv" --output=reports/figures
-
-# tune and test the model
-python src/explore_script4.py --input=data/processed/diabetes_clean.csv --output=reports/figures
-
-# render the report
-Rscript -e "rmarkdown::render('doc/SCRIPT5.Rmd', output_format = 'html_document')"
-
+make all
 ```
+To reset the repo to a clean state and re-run the analysis with no intermediate files, run the following code in your terminal from the root directory of this project:
+
+```python
+make clean
+```
+
 ## Dependencies 
 * Python 4.8.3 and Python packages:
   * docopt==0.6.2
@@ -49,10 +41,14 @@ Rscript -e "rmarkdown::render('doc/SCRIPT5.Rmd', output_format = 'html_document'
   * altair-saver==0.5.0
   * scikit-learn==0.23.2
   * matplotlib==3.3.2
+  
+  Additional dependency for Windows users:
+  * npm install -g vega-lite vega-cli canvas
  
 * R version 4.89 and R packages:
   * knitr==1.29
   * tidyverse==1.2.3
+  * kableExtra==1.3.1
 
 ## License:
 The materials used for this project are under an open access article distributed under the Creative Commons Attribution License, which permits unrestricted use, distribution, and reproduction in any medium, provided the original work is properly cited. If reusing/referencing, please provide a link to this webpage. 
