@@ -106,6 +106,7 @@ numeric_features = ["admission_type_id", "discharge_disposition_id", "admission_
 ordinal_features = ["gender", "change", "diabetesMed"]
 target_feature = "readmitted"
 
+# build our transformers
 print("build transformers")
 
 categorical_transformer = Pipeline(
@@ -176,15 +177,9 @@ def store_results(classifier_name, scores, results_dict):
         "train_accuracy": "{:0.4f}".format(np.mean(scores["train_accuracy"])),
         "test_f1": "{:0.4f}".format(np.mean(scores["test_f1"])),
         "train_f1": "{:0.4f}".format(np.mean(scores["train_f1"])),
-        "test_recall": "{:0.4f}".format(np.mean(scores["test_recall"])),
-        "train_recall": "{:0.4f}".format(np.mean(scores["train_recall"])),
-        "test_precision": "{:0.4f}".format(np.mean(scores["test_precision"])),
-        "train_precision": "{:0.4f}".format(np.mean(scores["train_precision"])),
-        "test_average_precision": "{:0.4f}".format(np.mean(scores["test_precision"])),
-        "train_average_precision": "{:0.4f}".format(np.mean(scores["train_precision"])),
-        "test_roc_auc": "{:0.4f}".format(np.mean(scores["test_roc_auc"])),
-        "train_roc_auc": "{:0.4f}".format(np.mean(scores["train_roc_auc"])),
+
     }
+    
 # Test 3 models against baseline DummyClassifier
 print("validating various models")
 classifiers = {
@@ -205,42 +200,51 @@ for classifier_name, classifier in classifiers.items():
     scores = cross_validate(pipe, X_train, y_train, return_train_score=True, scoring = scoring)
     store_results(classifier_name, scores, results_dict)
 
-results_dict = pd.DataFrame(results_dict)
+# save results from testing models into results_dict 
+results_dict = results_dict.T.rename(columns = {"fit_time" : "Fit Time",  "score_time" : "Score Time", "test_accuracy" : "Test Accuracy", "train_accuracy" : "Train Accuracy", "test_f1" : "Test F1-score", "train_f1" : "Train F1-score"})
 
+# save results_dict as a csv
 results_dict.to_csv("./reports/figures/script4_classifier_scores.csv")
-print("output varous model scors to csv")
+print("output various model scores to csv")
 
-
+# continue our analysis with logistic regression balanced
 lr_bal_pipe = Pipeline(steps=[("preprocessor", preprocessor), ("lr", LogisticRegression(class_weight="balanced"))])
 scoring=["accuracy", "precision", "f1", "recall", 'roc_auc', 'average_precision']
 
+# create the preprocessor and logistic regression pipeline
 pipe = make_pipeline(preprocessor, LogisticRegression(class_weight="balanced", max_iter = 10000))
 
+# do hyperparameter optimization on logistic regression for the hyperparameter C
 param_grid = {
              "logisticregression__C": [10,100,500],
               }
 
-
+# user randomizedsearch to do hyperparameter optimization
 random_search = RandomizedSearchCV(pipe, param_distributions=param_grid, n_jobs=-1, n_iter=2, cv=5, scoring= "f1")
 
+# fit our data using the best hyperparameters
 random_search.fit(X_train, y_train)
 random_search.best_params_
 
+# plot the confusion matrix
 print("plotting confusion matrix")
 from sklearn.metrics import plot_confusion_matrix
 
 cm = plot_confusion_matrix(random_search.best_estimator_, X_test, y_test, display_labels=["not admitted", "readmitted"], values_format="d", cmap=plt.cm.Blues)
 plt.savefig("./reports/figures/script4_confusion_matrix.png", dpi=300)
 
+# plot the precision recall curve
 from sklearn.metrics import plot_precision_recall_curve
 plot_precision_recall_curve(random_search, X_test, y_test, name='LogisticRegressionClassifier');
 plt.plot(recall_score(y_test, random_search.predict(X_test)), precision_score(y_test, random_search.predict(X_test)), 'or', markersize=8)
 
 plt.savefig("./reports/figures/script4_recall_precision.png", dpi=300)
 
+# print the classification report
 print(classification_report(y_test, random_search.predict(X_test),
         target_names=["not admitted", "readmitted"]))
 
+# plot the ROC curve
 from sklearn.metrics import plot_roc_curve
 
 cm = confusion_matrix(y_test, random_search.predict(X_test))
@@ -249,17 +253,14 @@ rc = plot_roc_curve(random_search, X_test, y_test, name='Logistic Regression')
 plt.plot(cm[0,1]/(cm[0].sum()), cm[1,1]/(cm[1].sum()), 'or', markersize=8)
 plt.savefig("./reports/figures/script4_ROC_AUC.png", dpi=300)
 
-print("outputeed confusion matrix")
-
-
-print("start random search for best hyperparamters")
-
+# score our test data
 random_search.best_estimator_.fit(X_train, y_train)
 random_search.best_estimator_.score(X_test,y_test)
 
 best_pipe = make_pipeline(preprocessor, LogisticRegression(class_weight="balanced", C=10, max_iter = 10000))
 best_pipe
 
+# find the most informative coefficients from our training data using our best pipeline
 print("find the best coefficients")
 best_pipe.fit(X_train, y_train)
 
