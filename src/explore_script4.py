@@ -75,9 +75,11 @@ print(output_path)
 
 diabetes_clean = pd.read_csv(read_path)
 
-
 # Take a random and representative sample of our diabetes dataset to apply data analysis to
 print("subsetting data")
+
+# set the seed 
+set.seed(2020)
 
 diabetes_subset = diabetes_clean.sample(n = 1_000)
 diabetes_subset

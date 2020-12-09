@@ -1,9 +1,4 @@
 ---
-output:
-  pdf_document: default
-  html_document: default
----
- ---
 title: '<span style=''font-size: 35px''>Readmission to Hospital Predictor for Diabetic
   Patients</style>'
 author: 'Group 29: Rachel Wong, Javairia Raza, Sukhdeep Kaur, and Zhiyong Wang'
@@ -75,23 +70,23 @@ Through exploratory data analysis, we determined that some of the features were 
 
 Before model testing, data cleaning was done to address the findings of  non-informative features, class imbalance, NAN values, and duplicate encounters, and this code can be found [here](https://github.com/UBC-MDS/group29/blob/main/src/processingdata.py). Non informative features included encounter id and patient number as those were entirely unique values. We removed weight, payer_code, medical_speciality, examide and citoglipton because much of the information was missing or all values in the column were the same. We were unsure about the race columns as majority of the patients were Caucasian and we did not want to add any racial biases to the data. As shown below, the distribution of race was reviewed to determine that there was no significant difference between different races in patient readmission and therefore the race column was removed from our analysis to prevent any bias.
 
-```{r race_figure, echo=FALSE, fig.cap="Figure 2. Distribution of Race and Readmission Status", out.width = '40%', fig.align = 'center'}
+```{r race_figure, echo=FALSE, fig.cap="Figure 1. Distribution of Race and Readmission Status", out.width = '40%', fig.align = 'center'}
 knitr::include_graphics("../reports/figures/figure1_racedist_eda.svg")
 ```
 
 Several of the numerical features were reviewed by plotting the distribution of the feature for the two different target classes against each other and found the primary diagnosis of the patient, days spent in hospital, number of medications taken and the frequency of lab procedures to be most informative of predicting readmission status. The importance of the primary diagnosis feature is that if the initial diagnosis is diabetes perhaps patients received better care during their first encounter and thus do not get readmitted [@paper].
 
-```{r numeric_features, echo=FALSE, fig.cap="Figure 3. Distribution of Numeric Features and Readmission Status", fig.align='center', out.width = '100%'}
+```{r numeric_features, echo=FALSE, fig.cap="Figure 2. Distribution of Numeric Features and Readmission Status", fig.align='center', out.width = '100%'}
 knitr::include_graphics("../reports/figures/figure2_numhisttarget_eda.svg")
 ```
 
 Several of the categorical features were also reviewed in a similar format to the numerical features analysis, and found that metformin, insulin, and Hemoglobin A1C levels were most informative of predicting readmission status. Testing for hemoglobin levels may have resulted in applicable changes to the medications and thus better management of diabetes during their hospital stay, preventing readmission [@NI]. 
 
-```{r categorical_features, echo=FALSE, fig.cap="Figure 4. Distribution of Categorical Features and Readmission Status", fig.align='center', out.width = '100%'}
+```{r categorical_features, echo=FALSE, fig.cap="Figure 3. Distribution of Categorical Features and Readmission Status", fig.align='center', out.width = '100%'}
 knitr::include_graphics("../reports/figures/figure3_numcattarget_eda.svg")
 ```
 
-After exploratory data analysis and data cleaning, machine learning models were tested with our data set, and logistic regression (with equal importance assigned to both classes) was determined as the best model to move forward with in our analysis based on fit and score time, accuracy, and f1 scores as shown in Table 1. The code used to perform machine learning can be found [here](https://github.com/UBC-MDS/group29/blob/main/src/explore_script4.py). 
+After exploratory data analysis and data cleaning, machine learning models were tested with our data set, and logistic regression (with equal importance assigned to both classes) was determined as the best model to move forward with in our analysis based on fit and score time, accuracy, and f1 scores as shown in Table 1. Fit and score time were chosen as evaluation metrics because the data set was quite large although we took a subset, and it was important to ensure the analysis would fit and score promptly. Accuracy and f1-score were also metrics used to evaluate our models on because accuracy determined the number of predictions our model predicted correctly, and f1-score further analyzes accuracy by combining precision and recall scores. From the scores in Table 1, we can see that logistic regression (balanced) had the highest test and train accuracy scores, as well as test and train f1-scores. Although the fit and score times of logistic regression (balanced) were the slowest, they were only slightly slower from the other models tested. The code used to perform machine learning can be found [here](https://github.com/UBC-MDS/group29/blob/main/src/explore_script4.py). 
 
 ```{r classifier_scores, warning = FALSE, message = FALSE, echo=FALSE, out.width = '100%', fig.align='center', fig.width=5}
 classifier_scores <- read_csv("../reports/figures/script4_classifier_scores.csv") 
@@ -102,10 +97,10 @@ knitr::kable(classifier_scores_tidy, caption = "**Table 1. Classifier Models and
   kableExtra::kable_styling(bootstrap_options = c("striped", "hover", "condensed","responsive"))
 ```
 
-Different parameters of the models were optimized and identified potential improvements for our model in future use. From the confusion matrix, we can see that there is a high amount of false positives and false negatives. From the receiver operating characteristic curve with area under the curve (ROC curve with AUC), and the red point showing our threshold at 0.5, our model is performing at 0.54 where AUC = 1.0 is a perfect classification. These results suggest that our model could be improved by choosing a different classifier or testing other scoring methods for our optimization besides f1-score. Our model performed average on the test data, and will therefore require improvements before implementation on deployment data for use in clinical studies. Details about these improvements can be found in the [Future Improvements] section of this report. 
+Different parameters of the models were optimized and identified potential improvements for our model in future use. From the confusion matrix, we can see that there is a high amount of false positives and false negatives. From the receiver operating characteristic curve with area under the curve (ROC curve with AUC), and the red point showing our threshold at 0.5, our model is performing at 0.54 where AUC = 1.0 is a perfect classification. These results suggest that our model could be improved by choosing a different classifier or testing other scoring methods for our optimization besides f1-score. Our model performed much lower on the testing data than on the training data, and will therefore require improvements before implementation on deployment data for use in clinical studies. Details about these improvements can be found in the [Future Improvements] section of this report. 
 
 
-```{r confusion_matrix, echo=FALSE, fig.cap="Figure 5. Confusion Matrix and ROC AUC Curve Results From Logistic Regression (Balanced)", fig.show='hold',fig.align='center', out.width = '50%'}
+```{r confusion_matrix, echo=FALSE, fig.cap="Figure 4. Confusion Matrix and ROC AUC Curve Results From Logistic Regression (Balanced)", fig.show='hold',fig.align='center', out.width = '50%'}
 knitr::include_graphics("../reports/figures/script4_confusion_matrix.png")
 knitr::include_graphics("../reports/figures/script4_ROC_AUC.png")
 ```
