@@ -42,6 +42,7 @@ def main(opt):
     #Subset the data for visualization optimization
 
     diabetes_with_race = pd.read_csv(datafile[1]) 
+    set.seed(2020)
     diabetes_subset = diabetes_with_race.sample(n = 1000)
 
     # Heatmap for Race
