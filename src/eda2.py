@@ -16,12 +16,13 @@ Options:
 
 from docopt import docopt
 import os
+import random
 import pandas as pd
 import numpy as np
 import altair as alt
 from altair_saver import save
 from pandas_profiling import ProfileReport
-
+from sklearn.model_selection import train_test_split
 
 
 opt = docopt(__doc__)
@@ -40,10 +41,11 @@ def main(opt):
     profile.to_file(output_file=file_path1)
     
     #Subset the data for visualization optimization
+    random.seed(123)
+    diabetes_with_race = pd.read_csv(datafile[1])
+    train_df, test_df = train_test_split(diabetes_with_race, test_size=0.2, random_state=123)
 
-    diabetes_with_race = pd.read_csv(datafile[1]) 
-    set.seed(2020)
-    diabetes_subset = diabetes_with_race.sample(n = 1000)
+    diabetes_subset = train_df.sample(n = 1000)
 
     # Heatmap for Race
     
