@@ -14,7 +14,7 @@ RUN Rscript -e "install.packages('tidyverse')"
 RUN Rscript -e "install.packages('kableExtra')"
 
 # Install the anaconda distribution of python
-RUN wget --quiet https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh -O ~/anaconda.sh && \
+RUN wget --quiet https://repo.anaconda.com/archive/Anaconda3-2020.11-Linux-x86_64.sh -O ~/anaconda.sh && \
     /bin/bash ~/anaconda.sh -b -p /opt/conda && \
     rm ~/anaconda.sh && \
     ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
@@ -28,9 +28,6 @@ RUN wget --quiet https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_6
 # put anaconda python in path
 ENV PATH="/opt/conda/bin:${PATH}"
 
-RUN conda install -c conda-forge pandas-profiling
-RUN conda install -c conda-forge altair_saver
-
 # install python package
 RUN conda install -y -c anaconda \ 
     docopt \
@@ -41,5 +38,9 @@ RUN conda install -y -c anaconda \
     altair \
     scikit-learn \
     matplotlib
+
+RUN conda install -c conda-forge altair_saver
+RUN conda install -c conda-forge pandas-profiling
+
 # Start Docker container in bash shell (interactive mode)
 CMD ["/bin/bash"]
