@@ -90,9 +90,7 @@ After exploratory data analysis and data cleaning, machine learning models were 
 
 ```{r classifier_scores, warning = FALSE, message = FALSE, echo=FALSE, out.width = '100%', fig.align='center', fig.width=5}
 classifier_scores <- read_csv("../reports/figures/script4_classifier_scores.csv") 
-classifier_scores_tidy <- as.data.frame(classifier_scores) %>%
-  rename("Time or Score" = X1) %>%
-  rename("RBFSVM" = "RBF SVM")
+classifier_scores_tidy <- as.data.frame(classifier_scores)
 knitr::kable(classifier_scores_tidy, caption = "**Table 1. Classifier Models and Their Associated Times and Scores**") %>% 
   kableExtra::kable_styling(bootstrap_options = c("striped", "hover", "condensed","responsive"))
 ```

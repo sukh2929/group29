@@ -17,6 +17,7 @@ from docopt import docopt
 import numpy as np
 import pandas as pd
 import altair as alt
+import random
 
 from hashlib import sha1
 
@@ -79,7 +80,7 @@ diabetes_clean = pd.read_csv(read_path)
 print("subsetting data")
 
 # set the seed 
-set.seed(2020)
+random.seed(2020)
 
 diabetes_subset = diabetes_clean.sample(n = 1_000)
 diabetes_subset
@@ -202,7 +203,8 @@ for classifier_name, classifier in classifiers.items():
     scores = cross_validate(pipe, X_train, y_train, return_train_score=True, scoring = scoring)
     store_results(classifier_name, scores, results_dict)
 
-# save results from testing models into results_dict 
+# save results from testing models into results_dict
+results_dict = pd.DataFrame(results_dict)
 results_dict = results_dict.T.rename(columns = {"fit_time" : "Fit Time",  "score_time" : "Score Time", "test_accuracy" : "Test Accuracy", "train_accuracy" : "Train Accuracy", "test_f1" : "Test F1-score", "train_f1" : "Train F1-score"})
 
 # save results_dict as a csv
