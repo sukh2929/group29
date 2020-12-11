@@ -11,9 +11,29 @@ Due to Covid-19, it is critical to reduce the burden on the healthcare system an
 The data are submitted on behalf of the Center for Clinical and Translational Research, Virginia Commonwealth University, a recipient of NIH CTSA grant UL1 TR00058, and a recipient of the CERNER data. This dataset was collected from 1998-2008 among 130 US hospitals and integrated delivery networks. The dataset can be found [here](https://archive.ics.uci.edu/ml/datasets/diabetes+130-us+hospitals+for+years+1999-2008#). Research from this collected data was used to assess diabetic care during hospitalization and determine if patients were likely to be readmitted or not. The paper by Strack et al. (2014) can be found [here](https://www.hindawi.com/journals/bmri/2014/781670/) and the descriptions for the features can be found [here](https://www.hindawi.com/journals/bmri/2014/781670/tab1/). 
 
 ## Report 
-The final report can be found [here](https://github.com/UBC-MDS/group29/blob/main/doc/SCRIPT5.Rmd). 
+The final report can be found [here](https://github.com/UBC-MDS/group29/blob/main/doc/diabetes_final_report.Rmd). A pdf version can be found [here](https://github.com/UBC-MDS/group29/blob/main/doc/diabetes_final_report.pdf)
 
 ## Usage
+There are two suggested ways to run this analysis:
+
+1. Using Docker
+
+*note - the instructions in this section also depends on running this in a unix shell (e.g., terminal or Git Bash)*
+
+To replicate the analysis, install [Docker](https://www.docker.com/get-started). A link to the DockerHub is [here](https://hub.docker.com/repository/docker/rachelywong/group29-dockerfile). Then clone this GitHub repository and run the following command at the command line/terminal from the root directory of this project:
+
+```
+docker run --rm -v /$(pwd):/home/group29 rachelywong/group29-dockerfile:v0.3.0 make -C /home/group29 all
+```
+
+2. Without using Docker
+
+To reset the repo to a clean state, with no intermediate or results files, run the following command at the command line/terminal from the root directory of this project:
+
+```
+docker run --rm -v /$(pwd):/home/group29 rachelywong/group29-dockerfile:v0.3.0 make -C /home/group29 clean
+```
+
 To replicate this analysis, clone this repository, install the dependencies below, and run the following code in your terminal from the root directory of this project:
 
 ```python
@@ -24,6 +44,9 @@ To reset the repo to a clean state and re-run the analysis with no intermediate 
 ```python
 make clean
 ```
+
+## Dependency Diagram of [Makefile](https://github.com/UBC-MDS/group29/blob/main/Makefile)
+![Dependency Diagram](https://github.com/UBC-MDS/group29/blob/main/Makefile.png)
 
 ## Dependencies 
 * Python 4.8.3 and Python packages:
@@ -42,7 +65,7 @@ make clean
   * scikit-learn==0.23.2
   * matplotlib==3.3.2
   
-  Additional dependency for Windows users:
+  Additional dependencies:
   * npm install -g vega-lite vega-cli canvas
  
 * R version 4.89 and R packages:
