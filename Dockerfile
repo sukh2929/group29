@@ -25,10 +25,10 @@ RUN wget --quiet https://repo.anaconda.com/archive/Anaconda3-2020.11-Linux-x86_6
     /opt/conda/bin/conda clean -afy && \
     /opt/conda/bin/conda update -n base -c defaults conda
 
-# put anaconda python in path
+# Put anaconda python in path
 ENV PATH="/opt/conda/bin:${PATH}"
 
-# install python package
+# Install python package
 RUN conda install -y -c anaconda \ 
     docopt \
     requests \
