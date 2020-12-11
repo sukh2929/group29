@@ -19,6 +19,7 @@ There are two suggested ways to run this analysis:
 1. Using Docker
 
 *note - the instructions in this section also depends on running this in a unix shell (e.g., terminal or Git Bash)*
+
 To replicate the analysis, install [Docker](https://www.docker.com/get-started). A link to the DockerHub is [here](https://hub.docker.com/repository/docker/rachelywong/group29-dockerfile).Then clone this GitHub repository and run the following command at the command line/terminal from the root directory of this project:
 
 ```
