@@ -90,9 +90,10 @@ After exploratory data analysis and data cleaning, machine learning models were 
 
 ```{r classifier_scores, warning = FALSE, message = FALSE, echo=FALSE, out.width = '100%', fig.align='center', fig.width=5}
 classifier_scores <- read_csv("../reports/figures/script4_classifier_scores.csv") 
-classifier_scores_tidy <- as.data.frame(classifier_scores)
+classifier_scores_tidy <- as.data.frame(classifier_scores) %>%
+  rename(Models = X1)
 knitr::kable(classifier_scores_tidy, caption = "**Table 1. Classifier Models and Their Associated Times and Scores**") %>% 
-  kableExtra::kable_styling(bootstrap_options = c("striped", "hover", "condensed","responsive"))
+  kableExtra::kable_styling(bootstrap_options = c("striped", "hover", "condensed","responsive")) 
 ```
 
 Different parameters of the models were optimized and identified potential improvements for our model in future use. From the confusion matrix, we can see that there is a high amount of false positives and false negatives. From the receiver operating characteristic curve with area under the curve (ROC curve with AUC), and the red point showing our threshold at 0.5, our model is performing at 0.54 where AUC = 1.0 is a perfect classification. These results suggest that our model could be improved by choosing a different classifier or testing other scoring methods for our optimization besides f1-score. Our model performed much lower on the testing data than on the training data, and will therefore require improvements before implementation on deployment data for use in clinical studies. Details about these improvements can be found in the [Future Improvements] section of this report. 

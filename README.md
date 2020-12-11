@@ -14,6 +14,26 @@ The data are submitted on behalf of the Center for Clinical and Translational Re
 The final report can be found [here](https://github.com/UBC-MDS/group29/blob/main/doc/diabetes_final_report.Rmd). 
 
 ## Usage
+There are two suggested ways to run this analysis:
+
+1. Using Docker
+
+*note - the instructions in this section also depends on running this in a unix shell (e.g., terminal or Git Bash)*
+
+To replicate the analysis, install [Docker](https://www.docker.com/get-started). A link to the DockerHub is [here](https://hub.docker.com/repository/docker/rachelywong/group29-dockerfile). Then clone this GitHub repository and run the following command at the command line/terminal from the root directory of this project:
+
+```
+docker run --rm -v /$(pwd):/home/group29 rachelywong/group29-dockerfile:v0.3.0 make -C /home/group29 all
+```
+
+2. Without using Docker
+
+To reset the repo to a clean state, with no intermediate or results files, run the following command at the command line/terminal from the root directory of this project:
+
+```
+docker run --rm -v /$(pwd):/home/group29 rachelywong/group29-dockerfile:v0.3.0 make -C /home/group29 clean
+```
+
 To replicate this analysis, clone this repository, install the dependencies below, and run the following code in your terminal from the root directory of this project:
 
 ```python
@@ -24,6 +44,9 @@ To reset the repo to a clean state and re-run the analysis with no intermediate 
 ```python
 make clean
 ```
+
+## Dependency Diagram of [Makefile](https://github.com/UBC-MDS/group29/blob/main/Makefile)
+![Dependency Diagram](https://github.com/UBC-MDS/group29/blob/main/Makefile.png)
 
 ## Dependencies 
 * Python 4.8.3 and Python packages:
@@ -42,7 +65,7 @@ make clean
   * scikit-learn==0.23.2
   * matplotlib==3.3.2
   
-  Additional dependency for Windows users:
+  Additional dependencies:
   * npm install -g vega-lite vega-cli canvas
  
 * R version 4.89 and R packages:

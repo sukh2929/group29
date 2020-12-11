@@ -37,3 +37,8 @@ vignettes/*.pdf
 
 # R Environment Variables
 .Renviron
+
+# General
+.DS_Store
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
