@@ -1,5 +1,5 @@
 ,Fit Time,Score Time,Test Accuracy,Train Accuracy,Test F1-score,Train F1-score
-Dummy Classifier,0.0444,0.0449,0.5338,0.5547,0.3393,0.3699
-RBF SVM,0.0967,0.0593,0.6613,0.7059,0.1804,0.3281
-Logistic Regression,0.1768,0.0424,0.6275,0.8203,0.3717,0.7009
-Logistic Regression (balanced),0.1690,0.0397,0.5675,0.8375,0.4252,0.7869
+Dummy Classifier,0.0217,0.0229,0.5325,0.5266,0.3993,0.4013
+RBF SVM,0.0613,0.0408,0.6312,0.6919,0.2299,0.3847
+Logistic Regression,0.0875,0.0224,0.5625,0.8213,0.3738,0.7446
+Logistic Regression (balanced),0.0844,0.0228,0.5538,0.8356,0.4540,0.7994
