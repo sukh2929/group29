@@ -16,8 +16,8 @@ The final report can be found [here](https://github.com/UBC-MDS/group29/blob/mai
 ## Usage
 There are two suggested ways to run this analysis:
 
-1. 
-Using Docker
+1. Using Docker
+
 *note - the instructions in this section also depends on running this in a unix shell (e.g., terminal or Git Bash)*
 To replicate the analysis, install [Docker](https://www.docker.com/get-started). A link to the DockerHub is [here](https://hub.docker.com/repository/docker/rachelywong/group29-dockerfile).Then clone this GitHub repository and run the following command at the command line/terminal from the root directory of this project:
 
@@ -25,8 +25,8 @@ To replicate the analysis, install [Docker](https://www.docker.com/get-started).
 docker run --rm -v /$(pwd):/home/group29 rachelywong/group29-dockerfile:v0.3.0 make -C /home/group29 all
 ```
 
-2. 
-Without using Docker
+2. Without using Docker
+
 To reset the repo to a clean state, with no intermediate or results files, run the following command at the command line/terminal from the root directory of this project:
 
 ```
