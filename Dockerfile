@@ -2,7 +2,7 @@
 # Rachel Wong, Javairia Raza, Zhiyong Wang, Sukhdeep Kaur
 # Dec 2020
 
-# use rocker/tidyverse as the base image
+# Use rocker/tidyverse as the base image
 FROM rocker/tidyverse
 # Install R
 RUN apt-get update && \ 
