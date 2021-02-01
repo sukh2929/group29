@@ -23,7 +23,7 @@ There are two suggested ways to run this analysis:
 To replicate the analysis, install [Docker](https://www.docker.com/get-started). A link to the DockerHub is [here](https://hub.docker.com/repository/docker/rachelywong/group29-dockerfile). Then clone this GitHub repository and run the following command at the command line/terminal from the root directory of this project:
 
 ```
-docker run --rm -v /$(pwd):/home/group29 rachelywong/group29-dockerfile:v0.3.0 make -C /home/group29 all
+docker run --rm -v /$(pwd):/home/group29 rachelywong/group29-dockerfile:v0.4.0 make -C /home/group29 all
 ```
 
 2. Without using Docker
@@ -31,7 +31,7 @@ docker run --rm -v /$(pwd):/home/group29 rachelywong/group29-dockerfile:v0.3.0 m
 To reset the repo to a clean state, with no intermediate or results files, run the following command at the command line/terminal from the root directory of this project:
 
 ```
-docker run --rm -v /$(pwd):/home/group29 rachelywong/group29-dockerfile:v0.3.0 make -C /home/group29 clean
+docker run --rm -v /$(pwd):/home/group29 rachelywong/group29-dockerfile:v0.4.0 make -C /home/group29 clean
 ```
 
 To replicate this analysis, clone this repository, install the dependencies below, and run the following code in your terminal from the root directory of this project:
